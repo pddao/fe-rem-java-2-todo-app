@@ -1,11 +1,10 @@
 package de.neuefische.todobackend.controller;
 
 import de.neuefische.todobackend.model.TodoItem;
+import de.neuefische.todobackend.model.dto.AddTodoItemDto;
 import de.neuefische.todobackend.service.TodoItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,10 @@ public class TodoItemController {
     @GetMapping
     public List<TodoItem> listItems(){
         return service.listItems();
+    }
+
+    @PostMapping
+    public TodoItem addTodoItem(@RequestBody AddTodoItemDto itemToAdd){
+        return service.addItem(itemToAdd);
     }
 }
