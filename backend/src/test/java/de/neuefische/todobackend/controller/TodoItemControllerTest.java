@@ -132,4 +132,19 @@ class TodoItemControllerTest {
         //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
     }
+
+    @Test
+    public void deleteByIdShouldDeleteItemFromDb(){
+        //GIVEN
+        repository.add(new TodoItem("1", "super", "IN_PROGRESS"));
+        repository.add(new TodoItem("2", "super fancy", "OPEN"));
+
+        //WHEN
+        restTemplate.delete("http://localhost:" + port + "/api/todo/2");
+
+        //THEN
+        List<TodoItem> todoItems = repository.listItems();
+        assertThat(todoItems, containsInAnyOrder(
+                new TodoItem("1", "super", "IN_PROGRESS")));
+    }
 }

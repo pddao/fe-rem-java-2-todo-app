@@ -92,4 +92,13 @@ class TodoItemServiceTest {
         //THEN
         assertThat(todoItemOptional.get(), is(new TodoItem("42", "Hallo", "OPEN")));
     }
+
+    @Test
+    public void deleteByIdShouldCallDeleteByIdOnRepository(){
+        //WHEN
+        service.deleteById("42");
+
+        //THEN
+        verify(repository).deleteById("42");
+    }
 }

@@ -111,4 +111,22 @@ class TodoItemRepositoryTest {
 
     }
 
+    @Test
+    public void deleteByIdShouldRemoveItemFromDb(){
+        //GIVEN
+        TodoItem todoItem = new TodoItem("1", "Hallo", "OPEN");
+        TodoItem secondTodoItem = new TodoItem("2", "Hallo 2", "IN_PROGRESS");
+        repository.add(todoItem);
+        repository.add(secondTodoItem);
+
+        //WHEN
+        repository.deleteById("2");
+
+        //THEN
+        List<TodoItem> todoItems = repository.listItems();
+        assertThat(todoItems, containsInAnyOrder(
+                new TodoItem("1", "Hallo", "OPEN")
+        ));
+    }
+
 }

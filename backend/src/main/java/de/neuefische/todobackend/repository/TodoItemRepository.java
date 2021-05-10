@@ -32,11 +32,11 @@ public class TodoItemRepository {
         if (findById(item.getId()).isEmpty()) {
             throw new IllegalArgumentException("Item with with id " + item.getId() + " not found");
         }
-        removeItemById(item.getId());
+        deleteById(item.getId());
         return add(item);
     }
 
-    private void removeItemById(String id) {
+    public void deleteById(String id) {
         Optional<TodoItem> itemToRemove = findById(id);
         if (itemToRemove.isPresent()) {
             todoItems.remove(itemToRemove.get());

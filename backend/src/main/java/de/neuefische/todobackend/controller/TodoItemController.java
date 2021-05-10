@@ -49,4 +49,10 @@ public class TodoItemController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
+
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable String id){
+        service.deleteById(id);
+    }
+
 }

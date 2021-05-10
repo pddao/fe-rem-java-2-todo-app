@@ -40,4 +40,8 @@ public class TodoItemService {
     public Optional<TodoItem> findById(String id) {
         return todoItemRepository.findById(id);
     }
+
+    public void deleteById(String id) {
+        todoItemRepository.deleteById(id);
+    }
 }
