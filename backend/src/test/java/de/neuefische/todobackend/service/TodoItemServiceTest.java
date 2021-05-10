@@ -7,6 +7,7 @@ import de.neuefische.todobackend.utils.IdUtils;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -77,5 +78,18 @@ class TodoItemServiceTest {
         //THEN
         verify(repository).update(new TodoItem("42", "Hallo", "OPEN"));
         assertThat(todoItem, is(new TodoItem("42", "Hallo", "OPEN")));
+    }
+
+    @Test
+    public void findByIdShouldCallfindByIdOnRepository(){
+        //GIVEN
+        TodoItem item = new TodoItem("42", "Hallo", "OPEN");
+        when(repository.findById("42")).thenReturn(Optional.of(item));
+
+        //WHEN
+        Optional<TodoItem> todoItemOptional = service.findById("42");
+
+        //THEN
+        assertThat(todoItemOptional.get(), is(new TodoItem("42", "Hallo", "OPEN")));
     }
 }

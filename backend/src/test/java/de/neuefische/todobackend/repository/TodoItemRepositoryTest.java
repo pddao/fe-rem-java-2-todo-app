@@ -4,6 +4,7 @@ import de.neuefische.todobackend.model.TodoItem;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -76,6 +77,38 @@ class TodoItemRepositoryTest {
                     new TodoItem("2", "Hallo 2", "IN_PROGRESS")
             ));
         }
+    }
+
+    @Test
+    public void findByIdShouldReturnOptionalWithItemWhenIdExists(){
+        //GIVEN
+        TodoItem todoItem = new TodoItem("1", "Hallo", "OPEN");
+        TodoItem secondTodoItem = new TodoItem("2", "Hallo 2", "IN_PROGRESS");
+        repository.add(todoItem);
+        repository.add(secondTodoItem);
+
+        //WHEN
+        Optional<TodoItem> response = repository.findById("2");
+
+        //THEN
+        assertThat(response.get(), is(new TodoItem("2", "Hallo 2", "IN_PROGRESS")));
+
+    }
+
+    @Test
+    public void findByIdShouldReturnOptionalEmptyWhenIdNotExists(){
+        //GIVEN
+        TodoItem todoItem = new TodoItem("1", "Hallo", "OPEN");
+        TodoItem secondTodoItem = new TodoItem("2", "Hallo 2", "IN_PROGRESS");
+        repository.add(todoItem);
+        repository.add(secondTodoItem);
+
+        //WHEN
+        Optional<TodoItem> response = repository.findById("4");
+
+        //THEN
+        assertThat(response.isEmpty(), is(true));
+
     }
 
 }

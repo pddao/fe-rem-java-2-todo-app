@@ -43,7 +43,7 @@ public class TodoItemRepository {
         }
     }
 
-    private Optional<TodoItem> findById(String id) {
+    public Optional<TodoItem> findById(String id) {
         for (TodoItem todoItem : todoItems) {
             if (todoItem.getId().equals(id)) {
                 return Optional.of(todoItem);

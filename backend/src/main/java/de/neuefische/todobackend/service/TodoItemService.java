@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoItemService {
@@ -34,5 +35,9 @@ public class TodoItemService {
 
     public TodoItem updateTodoItem(TodoItem item) {
         return todoItemRepository.update(item);
+    }
+
+    public Optional<TodoItem> findById(String id) {
+        return todoItemRepository.findById(id);
     }
 }

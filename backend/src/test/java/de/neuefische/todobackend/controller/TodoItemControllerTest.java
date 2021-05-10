@@ -106,4 +106,30 @@ class TodoItemControllerTest {
 
 
     }
+
+    @Test
+    public void getTodoItemByIdShouldReturnTodoItem(){
+        //GIVEN
+        repository.add(new TodoItem("1", "super ", "IN_PROGRESS"));
+        repository.add(new TodoItem("2", "super fancy", "OPEN"));
+
+        //WEN
+        ResponseEntity<TodoItem> response = restTemplate.getForEntity("http://localhost:" + port + "/api/todo/2", TodoItem.class);
+
+        //THEN
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getBody(), is(new TodoItem("2", "super fancy", "OPEN")));
+
+    }
+    @Test
+    public void getTodoItemByIdShouldReturn404WhenItemNotFound(){
+        //GIVEN
+        repository.add(new TodoItem("1", "super ", "IN_PROGRESS"));
+
+        //WEN
+        ResponseEntity<TodoItem> response = restTemplate.getForEntity("http://localhost:" + port + "/api/todo/2", TodoItem.class);
+
+        //THEN
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+    }
 }
