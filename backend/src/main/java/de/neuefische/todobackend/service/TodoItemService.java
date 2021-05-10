@@ -31,4 +31,8 @@ public class TodoItemService {
         todoItemRepository.add(todoItem);
         return todoItem;
     }
+
+    public TodoItem updateTodoItem(TodoItem item) {
+        return todoItemRepository.update(item);
+    }
 }

@@ -64,4 +64,18 @@ class TodoItemServiceTest {
         verify(repository).add(new TodoItem("42", "Hallo", "OPEN"));
     }
 
+
+    @Test
+    public void updateTodoItemShouldCallUpdateItemOnRepository(){
+        //GIVEN
+        TodoItem updatedItem = new TodoItem("42", "Hallo", "OPEN");
+        when(repository.update(updatedItem)).thenReturn(updatedItem);
+
+        //WHEN
+        TodoItem todoItem = service.updateTodoItem(updatedItem);
+
+        //THEN
+        verify(repository).update(new TodoItem("42", "Hallo", "OPEN"));
+        assertThat(todoItem, is(new TodoItem("42", "Hallo", "OPEN")));
+    }
 }

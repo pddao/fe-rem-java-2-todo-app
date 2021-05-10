@@ -11,8 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 
 import java.util.List;
 
@@ -37,7 +36,7 @@ class TodoItemControllerTest {
     private TestRestTemplate restTemplate;
 
     @BeforeEach
-    public void clearRepository(){
+    public void clearRepository() {
         repository.clear();
     }
 
@@ -56,12 +55,12 @@ class TodoItemControllerTest {
     }
 
     @Test
-    public void addTodoItemShouldAddItemToRepository(){
+    public void addTodoItemShouldAddItemToRepository() {
         //GIVEN
         AddTodoItemDto addTodoItemDto = new AddTodoItemDto("Hallo", "IN_PROGRESS");
         when(idUtils.generateUuid()).thenReturn("42");
         //WHEN
-        ResponseEntity<TodoItem> response = restTemplate.postForEntity("http://localhost:" + port + "/api/todo",addTodoItemDto, TodoItem.class);
+        ResponseEntity<TodoItem> response = restTemplate.postForEntity("http://localhost:" + port + "/api/todo", addTodoItemDto, TodoItem.class);
 
         //THEN
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
@@ -69,5 +68,42 @@ class TodoItemControllerTest {
 
         List<TodoItem> todoItems = repository.listItems();
         assertThat(todoItems, hasItem(new TodoItem("42", "Hallo", "IN_PROGRESS")));
+    }
+
+    @Test
+    public void putTodoItemShouldUpdateItem() {
+        //GIVEN
+        repository.add(new TodoItem("1", "fancy", "OPEN"));
+        repository.add(new TodoItem("2", "super ", "IN_PROGRESS"));
+
+        //WHEN
+        TodoItem updatedTodo = new TodoItem("2", "super 2", "OPEN");
+        restTemplate.put("http://localhost:" + port + "/api/todo/2", updatedTodo, TodoItem.class);
+
+        //THEN
+        List<TodoItem> todoItems = repository.listItems();
+        assertThat(todoItems, containsInAnyOrder(
+                new TodoItem("1", "fancy", "OPEN"),
+                new TodoItem("2", "super 2", "OPEN")));
+    }
+
+    @Test
+    public void whenPutItemWithUnknownIdServerReturn404(){
+        //GIVEN
+        repository.add(new TodoItem("1", "super ", "IN_PROGRESS"));
+
+        TodoItem updatedTodo = new TodoItem("2", "super 2", "OPEN");
+
+        //WHEN
+        HttpEntity<TodoItem> entity = new HttpEntity<>(updatedTodo);
+        ResponseEntity<TodoItem> response = restTemplate.exchange("http://localhost:" + port + "/api/todo/2",
+                HttpMethod.PUT,
+                entity,
+                TodoItem.class);
+
+        //THEN
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
+
+
     }
 }
