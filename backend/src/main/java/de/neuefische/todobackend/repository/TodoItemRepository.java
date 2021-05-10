@@ -23,4 +23,7 @@ public class TodoItemRepository {
     }
 
 
+    public void clear() {
+        todoItems.clear();
+    }
 }

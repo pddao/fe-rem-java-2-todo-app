@@ -4,6 +4,7 @@ import de.neuefische.todobackend.model.TodoItem;
 import de.neuefische.todobackend.model.dto.AddTodoItemDto;
 import de.neuefische.todobackend.repository.TodoItemRepository;
 import de.neuefische.todobackend.utils.IdUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,6 +35,11 @@ class TodoItemControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @BeforeEach
+    public void clearRepository(){
+        repository.clear();
+    }
 
     @Test
     public void getTodoItemsShouldReturnItemsFromDb() {
