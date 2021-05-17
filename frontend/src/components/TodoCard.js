@@ -1,4 +1,4 @@
-export function TodoCard({todo, updateToDo}) {
+export function TodoCard({todo, updateToDo, deleteToDo}) {
   return (
     <div>
       <img
@@ -6,7 +6,8 @@ export function TodoCard({todo, updateToDo}) {
         alt="Supersüßes Babycapybara"
       />
       <p> {todo.description} </p>
-        <button onClick={()=>updateToDo(todo)}>advance</button>
+        <button onClick={()=>updateToDo(todo)} disabled={todo.status === "DONE"}>advance</button>
+        <button onClick={()=>deleteToDo(todo)}>delete</button>
     </div>
   );
 }

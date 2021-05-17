@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export function loadTodos() {
-  return axios.get("/api/todo").then((response) => response.data);
+  return axios.get("/api/todo/").then((response) => response.data);
 }
 
 export function postNewTodo(newTodo) {
-  return axios.post("/api/todo",  newTodo).then((response) => response.data);
+  return axios.post("/api/todo/",  newTodo).then((response) => response.data);
 }
 
 export function deleteTodo(todo) {
