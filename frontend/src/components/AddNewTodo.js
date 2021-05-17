@@ -1,9 +1,13 @@
+import { useState } from "react";
+
 function AddNewTodo({ addCurrywurst }) {
+  const [todoDescription, setTodoDescription] = useState("");
+
   return (
     <div>
       <form>
         <input type="text" value={todoDescription} />
-        <button onClick={addCurrywurst} type="submit">
+        <button onClick={addCurrywurst({ todoDescription })} type="submit">
           add
         </button>
       </form>
