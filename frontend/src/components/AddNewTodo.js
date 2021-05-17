@@ -5,9 +5,16 @@ function AddNewTodo({ addCurrywurst }) {
 
   return (
     <div>
-      <form>
-        <input type="text" value={todoDescription} />
-        <button onClick={addCurrywurst({ todoDescription })} type="submit">
+      <form onSubmit={(event)=>{
+          event.preventDefault()
+          addCurrywurst( todoDescription )
+          setTodoDescription("")
+      }} >
+
+        <input type="text"
+               value={todoDescription}
+               onChange={(event)=>setTodoDescription(event.target.value)}/>
+        <button type="submit">
           add
         </button>
       </form>

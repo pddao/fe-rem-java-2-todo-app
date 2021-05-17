@@ -1,11 +1,13 @@
-function Board({title}) {
+import TodoCard from "./TodoCard";
+
+function Board({title, todos, updateToDo}) {
     return (
         <div>
             <h2>
                 {title}
             </h2>
 
-            Hier ist Platz für ToDo-Cards
+            {todos.map((todo)=>(<TodoCard key ={todo.id} todo ={todo} updateToDo ={updateToDo}/>))}
 
 
         </div>

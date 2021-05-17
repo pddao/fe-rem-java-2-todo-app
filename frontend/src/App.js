@@ -1,11 +1,16 @@
 import "./App.css";
 import MainBoard from "./components/MainBoard";
 import AddNewTodo from "./components/AddNewTodo";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import * as apiservice from "./service/apiservice";
+import {updateTodo} from "./service/apiservice";
 
 function App() {
   const [todos, setTodos] = useState([]);
+
+  useEffect(()=>{
+    loadData()
+  },[])
 
   const addTodo = (description) => {
     const newTodoDto = { description, status: "OPEN" };
@@ -15,9 +20,28 @@ function App() {
     });
   };
 
+  const loadData = ()=>{
+    apiservice.loadTodos().then((data)=>setTodos(data))
+  }
+
+ const updateToDo = (todo)=>{
+      const updatedTodo = todo
+    if(todo.status === "OPEN"){
+        updatedTodo.status = "IN_PROGRESS"
+      apiservice.updateTodo(updatedTodo)
+    }else if(todo.status === "IN_PROGRESS"){
+        updatedTodo.status = "DONE"
+      apiservice.updateTodo(updatedTodo)
+    }
+
+    const updatedTodos = todos.map((todo) =>
+        todo.id === updatedTodo.id ? updatedTodo : todo)
+     setTodos(updatedTodos)
+ }
+
   return (
     <div className="App">
-      <MainBoard />
+      <MainBoard todos ={todos} updateToDo ={updateToDo}/>
       <AddNewTodo addCurrywurst={addTodo} />
     </div>
   );
