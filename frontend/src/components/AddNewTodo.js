@@ -1,5 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components/macro";
+import PropTypes from "prop-types";
+
+AddNewTodo.propTypes={
+    addCurrywurst: PropTypes.func.isRequired,
+}
 
 function AddNewTodo({ addCurrywurst }) {
   const [todoDescription, setTodoDescription] = useState("");

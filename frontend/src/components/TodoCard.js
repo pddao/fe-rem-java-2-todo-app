@@ -1,4 +1,12 @@
 import styled from "styled-components/macro";
+import PropTypes from "prop-types";
+
+TodoCard.propTypes={
+    todo: PropTypes.shape({id: PropTypes.string, description: PropTypes.string, status: PropTypes.string}).isRequired,
+    updateToDo: PropTypes.func.isRequired,
+    deleteToDo: PropTypes.func.isRequired,
+
+}
 
 export function TodoCard({todo, updateToDo, deleteToDo}) {
   return (
