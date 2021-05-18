@@ -1,10 +1,11 @@
 import { useState } from "react";
+import styled from "styled-components/macro";
 
 function AddNewTodo({ addCurrywurst }) {
   const [todoDescription, setTodoDescription] = useState("");
 
   return (
-    <div>
+    <AddToDoStyle>
       <form onSubmit={(event)=>{
           event.preventDefault()
           addCurrywurst( todoDescription )
@@ -18,8 +19,27 @@ function AddNewTodo({ addCurrywurst }) {
           add
         </button>
       </form>
-    </div>
+    </AddToDoStyle>
   );
 }
+
+const AddToDoStyle = styled.div`
+  width: 100%;
+  form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  input{
+    width: 80%;
+    line-height: 28px;
+    margin-right: 1%;
+  }
+  
+  button{
+    width: 5%;
+  }
+`
 
 export default AddNewTodo;

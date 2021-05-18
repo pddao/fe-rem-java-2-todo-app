@@ -28,6 +28,7 @@ function MainBoard({todos, updateToDo, deleteToDo}) {
 
 const MainBoardStyle = styled.div`
   margin: 1%;
+  gap: 1em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   height: 100%;

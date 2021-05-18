@@ -14,8 +14,8 @@ const Title = styled.div`
   width: 100%;
   background: #23049d;
   color: white;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   h1 {
     margin:0;

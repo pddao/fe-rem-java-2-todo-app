@@ -60,9 +60,11 @@ function App() {
 
 const AppToDo = styled.div`
   margin: 0;
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background: #ffdf6b;
+  display: grid;
+  grid-template-rows: 2fr auto 1fr;
 `
 
 export default App;

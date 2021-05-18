@@ -1,8 +1,9 @@
 import TodoCard from "./TodoCard";
+import styled from "styled-components/macro";
 
 function Board({title, todos, updateToDo, deleteToDo}) {
     return (
-        <div>
+        <BoardStyle>
             <h2>
                 {title}
             </h2>
@@ -13,12 +14,19 @@ function Board({title, todos, updateToDo, deleteToDo}) {
                                           deleteToDo = {deleteToDo}/>))}
 
 
-        </div>
+        </BoardStyle>
 
 
     )
 }
 
-//#ff79cd
+
+
+const BoardStyle = styled.div`
+  padding: 5%;
+  h2{
+    text-align: center;
+  }
+`
 
 export default Board;

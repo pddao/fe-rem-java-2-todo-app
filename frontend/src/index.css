@@ -1,11 +1,20 @@
 body {
   padding:0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Pangolin', cursive;
+  cursor: url("capy.gif"), auto;
+}
+
+button, input{
+  background: white;
+  border-radius: 5px;
+  border-width: 1px;
+  border-color: #aa2ee6;
+  color: #aa2ee6;
+  font-size: small;
+  font-family: 'Pangolin', cursive;
 }
 
 code {
