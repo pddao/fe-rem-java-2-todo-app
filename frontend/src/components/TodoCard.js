@@ -8,7 +8,7 @@ export function TodoCard({todo, updateToDo, deleteToDo}) {
         alt="Supersüßes Babycapybara"
       />
       <p>{todo.description}</p>
-        <div class = "buttons">
+        <div className = "buttons">
             <button onClick={()=>updateToDo(todo)} disabled={todo.status === "DONE"}>advance</button>
             <button onClick={()=>deleteToDo(todo)}>delete</button>
         </div>
