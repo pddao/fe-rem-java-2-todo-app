@@ -1,62 +1,19 @@
 import MainBoard from "./components/MainBoard";
 import AddNewTodo from "./components/AddNewTodo";
-import {useEffect, useState} from "react";
-import * as apiservice from "./service/apiservice";
 import Header from "./components/Header";
 import styled from "styled-components/macro";
-
-
+import useTodos from "./hooks/useTodos";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+    const {todos, updateToDo, deleteToDo, addTodo} = useTodos();
 
-  useEffect(()=>{
-    loadData()
-  },[])
-
-  const addTodo = (description) => {
-    const newTodoDto = { description, status: "OPEN" };
-    apiservice.postNewTodo(newTodoDto).then((newTodo) => {
-      const updatedTodos = [...todos, newTodo];
-      setTodos(updatedTodos);
-    });
-  };
-
-  const loadData = ()=>{
-    apiservice.loadTodos().then((data)=>setTodos(data))
-  }
-
- const updateToDo = (todo)=>{
-      const updatedTodo = todo
-    if(todo.status === "OPEN"){
-        updatedTodo.status = "IN_PROGRESS"
-      apiservice.updateTodo(updatedTodo)
-    }else if(todo.status === "IN_PROGRESS"){
-        updatedTodo.status = "DONE"
-      apiservice.updateTodo(updatedTodo)
-    }
-
-    const updatedTodos = todos.map((todo) =>
-        todo.id === updatedTodo.id ? updatedTodo : todo)
-     setTodos(updatedTodos)
- }
-
- const deleteToDo = (todo)=>{
-      apiservice.deleteTodo(todo)
-     const updatedTodos = todos.filter((item) => todo.id !== item.id)
-     setTodos(updatedTodos)
- }
-
-
-
-
-  return (
-    <AppToDo>
-        <Header />
-      <MainBoard todos ={todos} updateToDo ={updateToDo} deleteToDo = {deleteToDo}/>
-      <AddNewTodo addCurrywurst={addTodo} />
-    </AppToDo>
-  );
+    return (
+        <AppToDo>
+            <Header/>
+            <MainBoard todos={todos} updateToDo={updateToDo} deleteToDo={deleteToDo}/>
+            <AddNewTodo addCurrywurst={addTodo}/>
+        </AppToDo>
+    );
 }
 
 const AppToDo = styled.div`
