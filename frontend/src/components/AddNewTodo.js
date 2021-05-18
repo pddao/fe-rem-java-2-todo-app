@@ -15,8 +15,7 @@ function AddNewTodo({ addCurrywurst }) {
           event.preventDefault()
           addCurrywurst( todoDescription )
           setTodoDescription("")
-      }} >
-
+      }}>
         <input type="text"
                value={todoDescription}
                onChange={(event)=>setTodoDescription(event.target.value)}/>

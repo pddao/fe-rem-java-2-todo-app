@@ -1,27 +1,26 @@
 import styled from "styled-components/macro";
 import PropTypes from "prop-types";
 
-TodoCard.propTypes={
+TodoCard.propTypes = {
     todo: PropTypes.shape({id: PropTypes.string, description: PropTypes.string, status: PropTypes.string}).isRequired,
     updateToDo: PropTypes.func.isRequired,
     deleteToDo: PropTypes.func.isRequired,
-
 }
 
 export function TodoCard({todo, updateToDo, deleteToDo}) {
-  return (
-    <ToDoCardStyle>
-      <img
-        src="https://i.pinimg.com/736x/3f/71/af/3f71af751fdea9f90a94157cc4523c35.jpg"
-        alt="Supersüßes Babycapybara"
-      />
-      <p>{todo.description}</p>
-        <div className = "buttons">
-            <button onClick={()=>updateToDo(todo)} disabled={todo.status === "DONE"}>advance</button>
-            <button onClick={()=>deleteToDo(todo)}>delete</button>
-        </div>
-    </ToDoCardStyle>
-  );
+    return (
+        <ToDoCardStyle>
+            <img
+                src="https://i.pinimg.com/736x/3f/71/af/3f71af751fdea9f90a94157cc4523c35.jpg"
+                alt="Supersüßes Babycapybara"
+            />
+            <p>{todo.description}</p>
+            <div className="buttons">
+                <button onClick={() => updateToDo(todo)} disabled={todo.status === "DONE"}>advance</button>
+                <button onClick={() => deleteToDo(todo)}>delete</button>
+            </div>
+        </ToDoCardStyle>
+    );
 }
 
 const ToDoCardStyle = styled.div`
@@ -34,18 +33,19 @@ const ToDoCardStyle = styled.div`
   padding: 5%;
   box-shadow: 10px 10px 1em gray;
   color: white;
+  
   p{
     font-weight: 900;
-    
   }
+  
   img{
     width: 15vw;
     border-radius: 10px;
   }
-
-button{
+  
+  button{
   padding: 5%;
-}
+  }
   
   .buttons{
     display: flex;

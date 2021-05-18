@@ -1,21 +1,14 @@
-
 import Board from "./Board";
 import styled from "styled-components/macro";
 import PropTypes from 'prop-types';
-
-
 
 MainBoard.propTypes={
         todos: PropTypes.arrayOf(PropTypes.shape({id: PropTypes.string, description: PropTypes.string, status: PropTypes.string})).isRequired,
         updateToDo: PropTypes.func.isRequired,
         deleteToDo: PropTypes.func.isRequired,
-
 }
 
 function MainBoard({todos, updateToDo, deleteToDo}) {
-
-
-
     return(
         <MainBoardStyle>
             <Board title="To Do"
@@ -30,10 +23,7 @@ function MainBoard({todos, updateToDo, deleteToDo}) {
                    todos={todos.filter((todo)=>todo.status === "DONE")}
                    updateToDo ={updateToDo}
                    deleteToDo = {deleteToDo}/>
-
-
         </MainBoardStyle>
-
     )
 }
 

@@ -17,10 +17,12 @@ const Title = styled.div`
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
+  
   h1 {
     margin:0;
     padding: 1em;
   }
+  
   img{
     height: 7em;
   }
@@ -30,6 +32,5 @@ const Title = styled.div`
     justify-self: flex-end;
   }
 `
-
 
 export default Header;
