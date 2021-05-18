@@ -1,8 +1,9 @@
-import "./App.css";
 import MainBoard from "./components/MainBoard";
 import AddNewTodo from "./components/AddNewTodo";
 import {useEffect, useState} from "react";
 import * as apiservice from "./service/apiservice";
+import Header from "./components/Header";
+import styled from "styled-components/macro";
 
 
 function App() {
@@ -49,11 +50,19 @@ function App() {
 
 
   return (
-    <div className="App">
+    <AppToDo>
+        <Header />
       <MainBoard todos ={todos} updateToDo ={updateToDo} deleteToDo = {deleteToDo}/>
       <AddNewTodo addCurrywurst={addTodo} />
-    </div>
+    </AppToDo>
   );
 }
+
+const AppToDo = styled.div`
+  margin: 0;
+  width: 100vw;
+  min-height: 100vh;
+  background: #ffdf6b;
+`
 
 export default App;

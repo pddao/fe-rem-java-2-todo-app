@@ -1,11 +1,12 @@
 
 import Board from "./Board";
+import styled from "styled-components/macro";
 
 
 function MainBoard({todos, updateToDo, deleteToDo}) {
 
     return(
-        <div>
+        <MainBoardStyle>
             <Board title="To Do"
                    todos={todos.filter((todo)=>todo.status === "OPEN")}
                    updateToDo ={updateToDo}
@@ -20,11 +21,16 @@ function MainBoard({todos, updateToDo, deleteToDo}) {
                    deleteToDo = {deleteToDo}/>
 
 
-        </div>
+        </MainBoardStyle>
 
     )
 }
 
-
+const MainBoardStyle = styled.div`
+  margin: 1%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100%;
+`
 
 export default MainBoard;

@@ -19,4 +19,6 @@ function Board({title, todos, updateToDo, deleteToDo}) {
     )
 }
 
+//#ff79cd
+
 export default Board;
