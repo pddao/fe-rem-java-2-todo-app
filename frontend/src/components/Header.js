@@ -4,7 +4,7 @@ function Header(){
         <Title>
             <img src="https://i.pinimg.com/originals/f2/f0/e0/f2f0e067ce9b8de1cdd98c9ee9605b55.png" alt=""/>
             <h1>Super Cabykanban-Babyboard 😍 </h1>
-            <div></div>
+            <img className="mirrored" src="https://i.pinimg.com/originals/f2/f0/e0/f2f0e067ce9b8de1cdd98c9ee9605b55.png" alt=""/>
         </Title>
     )
 }
@@ -23,6 +23,11 @@ const Title = styled.div`
   }
   img{
     height: 7em;
+  }
+  
+  .mirrored{
+    transform: scaleX(-1);
+    justify-self: flex-end;
   }
 `
 
