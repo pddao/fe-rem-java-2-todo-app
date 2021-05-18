@@ -29,6 +29,7 @@ const AddToDoStyle = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-bottom: 1em;
   }
   
   input{

@@ -64,7 +64,8 @@ const AppToDo = styled.div`
   min-height: 100vh;
   background: #ffdf6b;
   display: grid;
-  grid-template-rows: 2fr auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  
 `
 
 export default App;
